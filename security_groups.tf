@@ -1,5 +1,5 @@
 resource "aws_security_group" "default" {
-  vpc_id = "${var.vpc_id}"
+  vpc_id = var.vpc_id
 
   ingress {
     from_port   = 80
@@ -22,3 +22,4 @@ resource "aws_security_group" "default" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
