@@ -1,5 +1,9 @@
-# configure provider to not try too hard talking to AWS API
+terraform {
+  required_version = ">= 0.12"
+}
+
 provider "aws" {
+  version                     = ">= 2.15"
   skip_credentials_validation = true
   skip_metadata_api_check     = true
   skip_get_ec2_platforms      = true
@@ -11,47 +15,29 @@ provider "aws" {
   region                      = "eu-west-1"
 }
 
-# fixture
 module "alb_test" {
   source = "../.."
 
-  # required
-  name                     = "${var.name}"
-  vpc_id                   = "${var.vpc_id}"
-  subnet_ids               = "${var.subnet_ids}"
-  certificate_domain_name  = "${var.certificate_domain_name}"
-  default_target_group_arn = "${var.default_target_group_arn}"
+  name                     = "super-nice-alb-name"
+  vpc_id                   = "foobar"
+  subnet_ids               = ["subnet-b46032ec", "subnet-ca4311ef", "subnet-ba881221"]
+  certificate_domain_name  = "mydomain.com"
+  default_target_group_arn = "foobar"
   run_data                 = false
 }
 
 module "alb_test_with_tags" {
   source = "../.."
 
-  # required
-  name                     = "${var.name}"
-  vpc_id                   = "${var.vpc_id}"
-  subnet_ids               = "${var.subnet_ids}"
-  certificate_domain_name  = "${var.certificate_domain_name}"
-  default_target_group_arn = "${var.default_target_group_arn}"
+  name                     = "super-nice-alb-name"
+  vpc_id                   = "foobar"
+  subnet_ids               = ["subnet-b46032ec", "subnet-ca4311ef", "subnet-ba881221"]
+  certificate_domain_name  = "mydomain.com"
+  default_target_group_arn = "foobar"
   run_data                 = false
 
-  tags {
+  tags = {
     component = "component"
     service   = "service"
   }
 }
-
-# variables
-variable "name" {}
-
-variable "vpc_id" {}
-
-variable "subnet_ids" {
-  type = "list"
-}
-
-variable "certificate_domain_name" {
-  default = "dummydomain.com"
-}
-
-variable "default_target_group_arn" {}
