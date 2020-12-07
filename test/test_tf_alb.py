@@ -32,7 +32,9 @@ class TestTFALB(unittest.TestCase):
     def assert_resource_changes(self, testname, resource_changes):
         with open(f'test/files/{testname}.json', 'r') as f:
             data = json.load(f)
-
+            print (data.get('resource_changes'))
+            print ('******')
+            print (resource_changes)
             assert data.get('resource_changes') == resource_changes
 
     def test_create_alb(self):
@@ -85,7 +87,6 @@ class TestTFALB(unittest.TestCase):
             resource_changes = self.get_resource_changes()
 
             # Then
-            print(resource_changes)
             assert len(resource_changes) == 3
             self.assert_resource_changes_action(resource_changes, 'create', 3)
-            #self.assert_resource_changes('create_alb', resource_changes)
+            self.assert_resource_changes('create_network_alb', resource_changes)
