@@ -70,3 +70,22 @@ class TestTFALB(unittest.TestCase):
         assert len(resource_changes) == 3
         self.assert_resource_changes_action(resource_changes, 'create', 3)
         self.assert_resource_changes('create_alb_with_tags', resource_changes)
+
+    def test_create_alb_network(self):
+            # Given When
+            check_call([
+                'terraform',
+                'plan',
+                '-out=plan.out',
+                '-no-color',
+                '-target=module.alb_test_network',
+                'test/infra'
+            ])
+
+            resource_changes = self.get_resource_changes()
+
+            # Then
+            print(resource_changes)
+            assert len(resource_changes) == 3
+            self.assert_resource_changes_action(resource_changes, 'create', 3)
+            #self.assert_resource_changes('create_alb', resource_changes)
