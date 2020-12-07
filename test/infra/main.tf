@@ -41,3 +41,15 @@ module "alb_test_with_tags" {
     service   = "service"
   }
 }
+
+module "alb_test_network" {
+  source = "../.."
+
+  load_balancer_type       = "network"
+  name                     = "super-nice-alb-name"
+  vpc_id                   = "foobar"
+  subnet_ids               = ["subnet-b46032ec", "subnet-ca4311ef", "subnet-ba881221"]
+  certificate_domain_name  = "mydomain.com"
+  default_target_group_arn = "foobar"
+  run_data                 = false
+}

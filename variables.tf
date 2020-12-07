@@ -63,3 +63,10 @@ variable "run_data" {
   default     = true
 }
 
+variable "load_balancer_type" {
+  description = "Load balancer types: application, network, gateway"
+  type        = string
+  default     = "application"
+}
+
+

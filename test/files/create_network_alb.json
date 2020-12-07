@@ -1,11 +1,11 @@
 {
   "resource_changes": [
     {
-      "address": "module.alb_test_with_tags.aws_alb.alb[0]",
-      "module_address": "module.alb_test_with_tags",
+      "address": "module.alb_test_network.aws_alb.alb_network[0]",
+      "module_address": "module.alb_test_network",
       "mode": "managed",
       "type": "aws_alb",
-      "name": "alb",
+      "name": "alb_network",
       "index": 0,
       "provider_name": "aws",
       "change": {
@@ -22,13 +22,13 @@
             }
           ],
           "customer_owned_ipv4_pool": null,
-          "drop_invalid_header_fields": false,
-          "enable_cross_zone_load_balancing": null,
+          "drop_invalid_header_fields": null,
+          "enable_cross_zone_load_balancing": false,
           "enable_deletion_protection": false,
-          "enable_http2": true,
-          "idle_timeout": 60,
+          "enable_http2": null,
+          "idle_timeout": null,
           "internal": true,
-          "load_balancer_type": "application",
+          "load_balancer_type": "network",
           "name": "super-nice-alb-name",
           "name_prefix": null,
           "subnets": [
@@ -36,10 +36,7 @@
             "subnet-ba881221",
             "subnet-ca4311ef"
           ],
-          "tags": {
-            "component": "component",
-            "service": "service"
-          },
+          "tags": null,
           "timeouts": null
         },
         "after_unknown": {
@@ -58,15 +55,14 @@
             false,
             false
           ],
-          "tags": {},
           "vpc_id": true,
           "zone_id": true
         }
       }
     },
     {
-      "address": "module.alb_test_with_tags.aws_alb_listener.https",
-      "module_address": "module.alb_test_with_tags",
+      "address": "module.alb_test_network.aws_alb_listener.https",
+      "module_address": "module.alb_test_network",
       "mode": "managed",
       "type": "aws_alb_listener",
       "name": "https",
@@ -112,8 +108,8 @@
       }
     },
     {
-      "address": "module.alb_test_with_tags.aws_security_group.default",
-      "module_address": "module.alb_test_with_tags",
+      "address": "module.alb_test_network.aws_security_group.default",
+      "module_address": "module.alb_test_network",
       "mode": "managed",
       "type": "aws_security_group",
       "name": "default",
