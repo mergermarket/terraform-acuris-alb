@@ -2,6 +2,7 @@ data "aws_acm_certificate" "cert" {
   count    = var.run_data ? 1 : 0
   domain   = var.certificate_domain_name
   statuses = ["ISSUED"]
+  key_types = ["RSA_4096", "RSA_2048"]
 }
 
 resource "aws_alb" "alb" {
