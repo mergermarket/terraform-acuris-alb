@@ -32,7 +32,6 @@ class TestTFALB(unittest.TestCase):
     def assert_resource_changes(self, testname, resource_changes):
         with open(f'test/files/{testname}.json', 'r') as f:
             data = json.load(f)
-
             assert data.get('resource_changes') == resource_changes
 
     def test_create_alb(self):
@@ -70,3 +69,21 @@ class TestTFALB(unittest.TestCase):
         assert len(resource_changes) == 3
         self.assert_resource_changes_action(resource_changes, 'create', 3)
         self.assert_resource_changes('create_alb_with_tags', resource_changes)
+
+    def test_create_alb_network(self):
+            # Given When
+            check_call([
+                'terraform',
+                'plan',
+                '-out=plan.out',
+                '-no-color',
+                '-target=module.alb_test_network',
+                'test/infra'
+            ])
+
+            resource_changes = self.get_resource_changes()
+
+            # Then
+            assert len(resource_changes) == 3
+            self.assert_resource_changes_action(resource_changes, 'create', 3)
+            self.assert_resource_changes('create_network_alb', resource_changes)

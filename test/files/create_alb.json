@@ -1,11 +1,12 @@
 {
   "resource_changes": [
     {
-      "address": "module.alb_test.aws_alb.alb",
+      "address": "module.alb_test.aws_alb.alb[0]",
       "module_address": "module.alb_test",
       "mode": "managed",
       "type": "aws_alb",
       "name": "alb",
+      "index": 0,
       "provider_name": "aws",
       "change": {
         "actions": [
@@ -20,6 +21,8 @@
               "prefix": null
             }
           ],
+          "customer_owned_ipv4_pool": null,
+          "drop_invalid_header_fields": false,
           "enable_cross_zone_load_balancing": null,
           "enable_deletion_protection": false,
           "enable_http2": true,
@@ -76,6 +79,7 @@
               "authenticate_cognito": [],
               "authenticate_oidc": [],
               "fixed_response": [],
+              "forward": [],
               "redirect": [],
               "target_group_arn": "foobar",
               "type": "forward"
@@ -92,6 +96,7 @@
               "authenticate_cognito": [],
               "authenticate_oidc": [],
               "fixed_response": [],
+              "forward": [],
               "order": true,
               "redirect": []
             }
