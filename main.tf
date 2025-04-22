@@ -24,7 +24,7 @@ resource "aws_alb_listener" "https" {
   port              = "443"
   protocol          = "HTTPS"
   certificate_arn   = element(concat(data.aws_acm_certificate.cert.*.arn, [""]), 0)
-
+  ssl_policy        = var.ssl_policy
   default_action {
     target_group_arn = var.default_target_group_arn
     type             = "forward"

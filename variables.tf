@@ -63,3 +63,8 @@ variable "run_data" {
   default     = true
 }
 
+variable "ssl_policy" {
+  description = "The name of the SSL policy that defines which ciphers and protocols are supported. The default is ELBSecurityPolicy-2016-08"
+  type        = string
+  default     = "ELBSecurityPolicy-TLS13-1-2-2021-06"
+}
