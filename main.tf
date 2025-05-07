@@ -25,6 +25,17 @@ resource "aws_alb_listener" "https" {
   protocol          = "HTTPS"
   certificate_arn   = element(concat(data.aws_acm_certificate.cert.*.arn, [""]), 0)
   ssl_policy        = var.ssl_policy
+  
+  routing_http_response_strict_transport_security_header_value = var.routing_http_response_strict_transport_security_header_value
+  routing_http_response_access_control_allow_origin_header_value = var.routing_http_response_access_control_allow_origin_header_value
+  routing_http_response_access_control_allow_methods_header_value = var.routing_http_response_access_control_allow_methods_header_value
+  routing_http_response_access_control_allow_headers_header_value = var.routing_http_response_access_control_allow_headers_header_value
+  routing_http_response_access_control_allow_credentials_header_value = var.routing_http_response_access_control_allow_credentials_header_value
+  routing_http_response_access_control_expose_headers_header_value = var.routing_http_response_access_control_expose_headers_header_value
+  routing_http_response_access_control_max_age_header_value = var.routing_http_response_access_control_max_age_header_value
+  routing_http_response_content_security_policy_header_value = var.routing_http_response_content_security_policy_header_value
+  routing_http_response_x_content_type_options_header_value = var.routing_http_response_x_content_type_options_header_value
+  routing_http_response_x_frame_options_header_value = var.routing_http_response_x_frame_options_header_value
   default_action {
     target_group_arn = var.default_target_group_arn
     type             = "forward"

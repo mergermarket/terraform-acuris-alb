@@ -68,3 +68,71 @@ variable "ssl_policy" {
   type        = string
   default     = "ELBSecurityPolicy-TLS13-1-2-2021-06"
 }
+
+variable "routing_http_response_server_enabled" {
+  description = "Whether or not to enable the HTTP response server."
+  type        = string
+  default     = "true"
+}
+
+variable "routing_http_response_strict_transport_security_header_value" {
+  description = "The value of the Strict-Transport-Security header to be used in the HTTP response."
+  type        = string
+  default     = ""
+}
+
+variable "routing_http_response_access_control_allow_origin_header_value" {
+  description = "The value of the Access-Control-Allow-Origin header to be used in the HTTP response."
+  type        = string
+  default     = ""
+}
+
+variable "routing_http_response_access_control_allow_methods_header_value" {
+  description = "The value of the Access-Control-Allow-Methods header to be used in the HTTP response."
+  type        = string
+  default     = ""
+}
+
+variable "routing_http_response_access_control_allow_headers_header_value" {
+  description = "The value of the Access-Control-Allow-Headers header to be used in the HTTP response."
+  type        = string
+  default     = ""
+}
+
+variable "routing_http_response_access_control_allow_credentials_header_value" {
+  description = "The value of the Access-Control-Allow-Credentials header to be used in the HTTP response."
+  type        = string
+  default     = ""
+}
+
+variable "routing_http_response_access_control_expose_headers_header_value" {
+  description = "The value of the Access-Control-Expose-Headers header to be used in the HTTP response."
+  type        = string
+  default     = ""
+}
+
+variable "routing_http_response_access_control_max_age_header_value" {
+  description = "The value of the Access-Control-Max-Age header to be used in the HTTP response."
+  type        = string
+  default     = ""
+}
+
+variable "routing_http_response_content_security_policy_header_value" {
+  description = "The value of the Content-Security-Policy header to be used in the HTTP response."
+  type        = string
+  default     = ""
+}
+
+variable "routing_http_response_x_content_type_options_header_value" {
+  description = "The value of the X-Content-Type-Options header to be used in the HTTP response."
+  type        = string
+  default     = ""
+}
+
+variable "routing_http_response_x_frame_options_header_value" {
+  description = "The value of the X-Frame-Options header to be used in the HTTP response."
+  type        = string
+  default     = ""
+}
+
+# we are not providing support for customizing routing_http_request_x_amzn_mtls_clientcert* attributes.check "
