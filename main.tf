@@ -6,7 +6,7 @@ data "aws_acm_certificate" "cert" {
 }
 
 resource "aws_alb" "alb" {
-  name                 = replace(replace(replace(var.name, "/(.{0,32}).*/", "$1"), "/^-+|-+$/", ""),"_","-")
+  name                 = replace(replace(replace(var.name, "/(.{0,32}).*/", "$1"), "/^-+|-+$/", ""), "_", "-")
   internal             = var.internal
   security_groups      = concat([aws_security_group.default.id], var.extra_security_groups)
   subnets              = var.subnet_ids
@@ -25,6 +25,7 @@ resource "aws_alb_listener" "https" {
   port              = "443"
   protocol          = "HTTPS"
   certificate_arn   = element(concat(data.aws_acm_certificate.cert.*.arn, [""]), 0)
+  ssl_policy        = "ELBSecurityPolicy-TLS13-1-2-Res-2021-06"
 
   default_action {
     target_group_arn = var.default_target_group_arn
