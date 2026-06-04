@@ -21,7 +21,7 @@ Module Input Variables
 - `internal` - (bool) - OPTIONAL - If true, the ALB will be internal; default: `true`
 - `extra_security_groups` - (list) - OPTIONAL - Extra security groups to be attached to ALB
 - `tags` - (map) - OPTIONAL - Map of tags to be applied to the resources (just to ALB as ALB Listeners cannot be tagged); default: `{}` (empty - no tags)
-
+- `sg_name_prefix` - OPTIONAL - prefix string for name of default security group created for ALB. Defaults to null, which preserves current behavior of name = random terraform string.
 Usage
 
 ----------------------

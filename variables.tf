@@ -4,6 +4,11 @@ variable "name" {
   type        = string
 }
 
+variable "sg_name_prefix" {
+  description = "The name prefix of the security group. The full name will be this prefix followed by a random string to ensure uniqueness. This is required because security group names must be unique within an AWS account."
+  type        = string
+  default    = null
+}
 variable "vpc_id" {
   description = "The id of the VPC that the desired security group belongs to"
   type        = string

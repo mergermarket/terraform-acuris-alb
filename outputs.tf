@@ -14,3 +14,6 @@ output "alb_zone_id" {
   value = aws_alb.alb.zone_id
 }
 
+output "alb_sg_name" {
+  value = aws_security_group.default.name
+}
