@@ -68,3 +68,9 @@ variable "preserve_host_header" {
   type        = string
   default     = "false"
 }
+
+variable "ssl_policy" {
+  description = "The name of the TLS policy to apply to the ALB listener"
+  type        = string
+  default     = "ELBSecurityPolicy-TLS13-1-2-Res-2021-06"
+}
