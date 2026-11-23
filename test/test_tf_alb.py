@@ -70,3 +70,23 @@ class TestTFALB(unittest.TestCase):
         assert len(resource_changes) == 3
         self.assert_resource_changes_action(resource_changes, 'create', 3)
         self.assert_resource_changes('create_alb_with_tags', resource_changes)
+
+    def test_create_alb_with_prefix_list(self):
+        check_call([
+            'terraform',
+            'plan',
+            '-out=plan.out',
+            '-no-color',
+            '-target=module.alb_test_with_prefix_list',
+            'test/infra'
+        ])
+
+        security_group = next(
+            rc for rc in self.get_resource_changes()
+            if rc['type'] == 'aws_security_group'
+        )
+        ingress = security_group['change']['after']['ingress']
+        assert {rule['from_port'] for rule in ingress} == {80, 443}
+        for rule in ingress:
+            assert rule['cidr_blocks'] == []
+            assert rule['prefix_list_ids'] == ['pl-0123456789abcdef0']

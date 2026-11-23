@@ -37,6 +37,12 @@ variable "extra_security_groups" {
   default     = [""]
 }
 
+variable "ingress_prefix_list_ids" {
+  description = "Prefix lists allowed to access the ALB on ports 80 and 443; an empty list allows all IPv4 addresses"
+  type        = list(string)
+  default     = []
+}
+
 variable "access_logs_bucket" {
   description = "An S3 bucket to send access logs to"
   default     = ""
